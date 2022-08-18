@@ -6,6 +6,7 @@ const File = require("./models/file");
 const Module = require("./models/module");
 const userRoute = require("./routes/auth");
 const moduleRoute = require("./routes/module");
+const fileRoute = require("./routes/file");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(express.json());
 
 app.use("/api/user", userRoute);
 app.use("/api/module", moduleRoute);
+app.use("/api/file", fileRoute);
 
 app.listen(Port, async () => {
   console.log(`-- server running on port ${process.env.PORT} ... --`);
