@@ -1,18 +1,21 @@
 const router = require("express").Router();
 const auth = require("../middlewares/auth");
 const Module = require("../models/module");
-// const User = require("../models/user");
+const File = require("../models/file");
 
 router.get("/", auth, async (req, res) => {
   try {
     if (req.user.role == "etudiant" || req.user.role == "admin") {
-      const modules = await Module.findAll();
+      const modules = await Module.findAll({
+        include: File,
+      });
       return res.send(modules);
     } else if (req.user.role == "prof") {
       const modules = await Module.findAll({
         where: {
           UserId: req.user.id,
         },
+        include: File,
       });
       return res.send(modules);
     } else {

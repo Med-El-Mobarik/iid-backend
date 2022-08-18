@@ -10,11 +10,11 @@ const moduleRoute = require("./routes/module");
 const dotenv = require("dotenv");
 dotenv.config();
 
-// User.hasMany(Module);
-// Module.belongsTo(User);
+User.hasMany(Module);
+Module.belongsTo(User);
 
-// Module.hasMany(File, { onDelete: "CASCADE" });
-// File.belongsTo(Module);
+Module.hasMany(File, { onDelete: "CASCADE" });
+File.belongsTo(Module);
 
 const app = express();
 
