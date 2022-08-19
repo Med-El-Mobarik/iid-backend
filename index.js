@@ -6,6 +6,7 @@ const File = require("./models/file");
 const Module = require("./models/module");
 const userRoute = require("./routes/auth");
 const moduleRoute = require("./routes/module");
+const profRoute = require("./routes/prof");
 const fileRoute = require("./routes/file");
 
 const dotenv = require("dotenv");
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use("/api/user", userRoute);
 app.use("/api/module", moduleRoute);
 app.use("/api/file", fileRoute);
+app.use("/api/prof", profRoute);
 
 app.listen(Port, async () => {
   console.log(`-- server running on port ${process.env.PORT} ... --`);
@@ -40,6 +42,7 @@ app.listen(Port, async () => {
     console.error("-- Db not connected --", error);
   }
   try {
+    // await db.sync({alter: true});
     await db.sync();
     console.log("-- Tables were created successfully --");
   } catch (error) {

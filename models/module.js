@@ -10,6 +10,11 @@ const Module = db.define("Module", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
+  },
+  showname: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   annee: {
     type: DataTypes.INTEGER,
